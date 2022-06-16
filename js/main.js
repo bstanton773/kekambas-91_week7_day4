@@ -41,7 +41,7 @@
 {
     // Get the header
     let myHeader = document.getElementById('myHeader');
-    console.log(myHeader);
+    // console.log(myHeader);
 
     // Create a function to be executed when the event is triggered
     function handleHeaderEvent(e){
@@ -72,4 +72,19 @@
             body.className = `bg-${buttonColors[i]}`
         })
     }
+}
+
+// Get the country from the form and display info on page
+{
+    // Grab the form
+    let form = document.getElementById('countryForm');
+    
+    // Create a function to handle submit event
+    function handleSubmit(e){
+        e.preventDefault();
+        console.log(e.target.countryName.value);
+    }
+
+    // Add handleSubmit function as listener to submit even on form
+    form.addEventListener('submit', handleSubmit);
 }
