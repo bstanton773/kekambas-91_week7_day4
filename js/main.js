@@ -80,11 +80,27 @@
     let form = document.getElementById('countryForm');
     
     // Create a function to handle submit event
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault();
-        console.log(e.target.countryName.value);
+        // Get the input data from the form
+        let inputCountry = e.target.countryName.value;
+
+        let country = await getCountryInfo(inputCountry);
+        console.log(country);
     }
 
     // Add handleSubmit function as listener to submit even on form
     form.addEventListener('submit', handleSubmit);
+
+
+    // Function that will get the data from the country API
+    async function getCountryInfo(countryName){
+        try{
+            let res = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+            let data = await res.json()
+            return data[0]
+        } catch(err) {
+            console.error(err)
+        }
+    }
 }
